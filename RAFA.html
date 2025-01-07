@@ -12,6 +12,10 @@
             color: #333;
             margin: 0;
             padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         header {
             background-color: #007bff;
@@ -33,6 +37,19 @@
             background-color: #007bff;
             color: white;
             padding: 1rem;
+        }
+        .connect-wallet-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .connect-wallet-btn:hover {
+            background-color: #218838;
         }
     </style>
 </head>
@@ -57,8 +74,29 @@
         <h2>تماس</h2>
         <p>ایمیل: example@example.com</p>
     </section>
+    
+    <!-- دکمه اتصال به ولت -->
+    <div>
+        <button class="connect-wallet-btn" onclick="connectWallet()">Connect Wallet</button>
+    </div>
+
     <footer>
         <p>&copy; 2025 تمام حقوق محفوظ است.</p>
     </footer>
+
+    <script>
+        async function connectWallet() {
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    alert('Wallet connected: ' + accounts[0]);
+                } catch (error) {
+                    alert('Error connecting wallet: ' + error.message);
+                }
+            } else {
+                alert('MetaMask not detected. Please install MetaMask.');
+            }
+        }
+    </script>
 </body>
 </html>
