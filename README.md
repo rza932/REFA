@@ -53,6 +53,9 @@
             background-color: #218838;
         }
     </style>
+    <!-- وارد کردن Web3Modal و Web3.js -->
+    <script src="https://cdn.jsdelivr.net/npm/web3modal@1.9.0/dist/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.6.1/dist/web3.min.js"></script>
 </head>
 <body>
     <header>
@@ -86,15 +89,49 @@
     </footer>
 
     <script>
+        // تنظیم Web3Modal
+        let web3Modal;
+        let provider;
+
         async function connectWallet() {
-            if (typeof window.ethereum !== 'undefined') {
-                try {
-                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                    alert('Wallet connected: ' + accounts[0]);
-                } catch (error) {
-                    alert('Error connecting wallet: ' + error.message);
-                }
-            } else {
+            try {
+                web3Modal = new Web3Modal({
+                    cacheProvider: false, // ذخیره نشدن کیف پول‌های قبلی
+                    providerOptions: {
+                        metamask: {
+                            package: null, // MetaMask
+                        },
+                        walletconnect: {
+                            package: require("@walletconnect/web3-provider"), // WalletConnect
+                            options: {
+                                infuraId: "INFURA_PROJECT_ID" // آیدی پروژه اینفورا (برای WalletConnect)
+                            }
+                        },
+                        fortmatic: {
+                            package: require("fortmatic"),
+                            options: {
+                                key: "FORTMATIC_API_KEY" // آیدی کل API Fortmatic
+                            }
+                        },
+                        // اضافه کردن گزینه‌های کیف پول‌های دیگر (مانند Tonkeeper و Proton) به اینجا
+                    }
+                });
+
+                // باز کردن modal برای انتخاب کیف پول
+                provider = await web3Modal.connect();
+
+                const web3 = new Web3(provider);
+
+                const accounts = await web3.eth.getAccounts();
+                alert('Wallet connected: ' + accounts[0]);
+            } catch (error) {
+                alert('Error connecting wallet: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>
+
                 alert('MetaMask not detected. Please install MetaMask.');
             }
         }
