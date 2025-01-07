@@ -45,45 +45,16 @@
         .connect-wallet-btn:hover {
             background-color: #218838;
         }
-        .wallet-options {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-        }
-        .wallet-option {
-            margin: 0 10px;
-            cursor: pointer;
-        }
-        .wallet-option img {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-            transition: transform 0.3s;
-        }
-        .wallet-option img:hover {
-            transform: scale(1.1);
-        }
     </style>
 </head>
 <body>
     <header>
-        <h1>انتخاب کیف پول</h1>
+        <h1>اتصال به MetaMask</h1>
     </header>
 
     <div>
-        <p>لطفا کیف پول مورد نظر خود را انتخاب کنید:</p>
-
-        <div class="wallet-options">
-            <!-- آیکون‌های کیف پول -->
-            <div class="wallet-option" onclick="connectWithMetaMask()">
-                <img src="https://cryptologos.cc/logos/metamask-mask-logo.png" alt="MetaMask">
-            </div>
-            <div class="wallet-option" onclick="connectWithWalletConnect()">
-                <img src="https://cryptologos.cc/logos/walletconnect-wallet-logo.png" alt="WalletConnect">
-            </div>
-            <!-- اینجا می‌توانید آیکون کیف پول‌های دیگر مانند Proton و Tonkeeper را اضافه کنید -->
-        </div>
-
+        <p>برای اتصال به کیف پول MetaMask خود، روی دکمه زیر کلیک کنید:</p>
+        <button class="connect-wallet-btn" onclick="connectMetaMask()">Connect MetaMask</button>
     </div>
 
     <footer>
@@ -91,10 +62,7 @@
     </footer>
 
     <script>
-        // متدهای اتصال به کیف پول
-
-        // اتصال به MetaMask
-        async function connectWithMetaMask() {
+        async function connectMetaMask() {
             if (typeof window.ethereum !== 'undefined') {
                 try {
                     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -106,26 +74,6 @@
                 alert('MetaMask not detected. Please install MetaMask.');
             }
         }
-
-        // اتصال به WalletConnect (این می‌تواند برای کیف پول‌های دیگر نیز باشد)
-        async function connectWithWalletConnect() {
-            const provider = new WalletConnectProvider({
-                infuraId: "INFURA_PROJECT_ID" // اضافه کردن شناسه Infura خود
-            });
-
-            try {
-                await provider.enable();
-                const web3 = new Web3(provider);
-                const accounts = await web3.eth.getAccounts();
-                alert('Wallet connected: ' + accounts[0]);
-            } catch (error) {
-                alert('Error connecting WalletConnect: ' + error.message);
-            }
-        }
     </script>
-
-    <!-- وارد کردن WalletConnectProvider -->
-    <script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider/dist/umd/index.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
 </body>
 </html>
