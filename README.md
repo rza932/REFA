@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>وب‌سایت من</title>
+    <title>My Website</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,6 +17,13 @@
             background-color: #007bff;
             color: white;
             padding: 1rem;
+        }
+        .logo {
+            font-size: 4rem; /* فونت درشت */
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), 0 0 25px rgba(0, 0, 255, 0.5);
+            margin: 0;
         }
         nav a {
             color: white;
@@ -38,27 +45,27 @@
 </head>
 <body>
     <header>
-        <h1>به وب‌سایت من خوش آمدید</h1>
+        <h1 class="logo">RAFA</h1> <!-- لوگو با فونت سه‌بعدی -->
         <nav>
-            <a href="#about">درباره</a>
-            <a href="#services">خدمات</a>
-            <a href="#contact">تماس</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
         </nav>
     </header>
     <section id="about">
-        <h2>درباره من</h2>
-        <p>این اولین وب‌سایت من است که با کمک HTML ساخته شده است.</p>
+        <h2>About Me</h2>
+        <p>This is my first website created with the help of HTML.</p>
     </section>
     <section id="services">
-        <h2>خدمات</h2>
-        <p>ما بهترین خدمات را ارائه می‌دهیم.</p>
+        <h2>Services</h2>
+        <p>We provide the best services.</p>
     </section>
     <section id="contact">
-        <h2>تماس</h2>
-        <p>ایمیل: example@example.com</p>
+        <h2>Contact</h2>
+        <p>Email: example@example.com</p>
     </section>
     <footer>
-        <p>&copy; 2025 تمام حقوق محفوظ است.</p>
+        <p>&copy; 2025 All rights reserved.</p>
     </footer>
 </body>
 </html>
