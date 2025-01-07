@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اتصال به کیف پول</title>
+    <title>وب‌سایت من</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,21 +16,27 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
         }
         header {
             background-color: #007bff;
             color: white;
             padding: 1rem;
-            width: 100%;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            padding: 2rem;
         }
         footer {
             background-color: #007bff;
             color: white;
             padding: 1rem;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
         }
         .connect-wallet-btn {
             background-color: #28a745;
@@ -49,12 +55,29 @@
 </head>
 <body>
     <header>
-        <h1>اتصال به MetaMask</h1>
+        <h1>به وب‌سایت من خوش آمدید</h1>
+        <nav>
+            <a href="#about">درباره</a>
+            <a href="#services">خدمات</a>
+            <a href="#contact">تماس</a>
+        </nav>
     </header>
-
+    <section id="about">
+        <h2>درباره من</h2>
+        <p>این اولین وب‌سایت من است که با کمک HTML ساخته شده است.</p>
+    </section>
+    <section id="services">
+        <h2>خدمات</h2>
+        <p>ما بهترین خدمات را ارائه می‌دهیم.</p>
+    </section>
+    <section id="contact">
+        <h2>تماس</h2>
+        <p>ایمیل: example@example.com</p>
+    </section>
+    
+    <!-- دکمه اتصال به ولت -->
     <div>
-        <p>برای اتصال به کیف پول MetaMask خود، روی دکمه زیر کلیک کنید:</p>
-        <button class="connect-wallet-btn" onclick="connectMetaMask()">Connect MetaMask</button>
+        <button class="connect-wallet-btn" onclick="connectWallet()">Connect Wallet</button>
     </div>
 
     <footer>
@@ -62,13 +85,13 @@
     </footer>
 
     <script>
-        async function connectMetaMask() {
+        async function connectWallet() {
             if (typeof window.ethereum !== 'undefined') {
                 try {
                     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
                     alert('Wallet connected: ' + accounts[0]);
                 } catch (error) {
-                    alert('Error connecting MetaMask: ' + error.message);
+                    alert('Error connecting wallet: ' + error.message);
                 }
             } else {
                 alert('MetaMask not detected. Please install MetaMask.');
