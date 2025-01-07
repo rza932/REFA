@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اتصال به کیف پول</title>
+    <title>My Website</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,120 +12,60 @@
             color: #333;
             margin: 0;
             padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
         }
         header {
             background-color: #007bff;
             color: white;
             padding: 1rem;
-            width: 100%;
+        }
+        .logo {
+            font-size: 4rem; /* فونت درشت */
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), 0 0 25px rgba(0, 0, 255, 0.5);
+            margin: 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            padding: 2rem;
         }
         footer {
             background-color: #007bff;
             color: white;
             padding: 1rem;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-        .connect-wallet-btn {
-            background-color: #28a745;
-            color: white;
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        .connect-wallet-btn:hover {
-            background-color: #218838;
-        }
-        .wallet-options {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-        }
-        .wallet-option {
-            margin: 0 10px;
-            cursor: pointer;
-        }
-        .wallet-option img {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-            transition: transform 0.3s;
-        }
-        .wallet-option img:hover {
-            transform: scale(1.1);
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>انتخاب کیف پول</h1>
+        <h1 class="logo">RAFA</h1> <!-- لوگو با فونت سه‌بعدی -->
+        <nav>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </nav>
     </header>
-
-    <div>
-        <p>لطفا کیف پول مورد نظر خود را انتخاب کنید:</p>
-
-        <div class="wallet-options">
-            <!-- آیکون‌های کیف پول -->
-            <div class="wallet-option" onclick="connectWithMetaMask()">
-                <img src="https://cryptologos.cc/logos/metamask-mask-logo.png" alt="MetaMask">
-            </div>
-            <div class="wallet-option" onclick="connectWithWalletConnect()">
-                <img src="https://cryptologos.cc/logos/walletconnect-wallet-logo.png" alt="WalletConnect">
-            </div>
-            <!-- اینجا می‌توانید آیکون کیف پول‌های دیگر مانند Proton و Tonkeeper را اضافه کنید -->
-        </div>
-
-    </div>
-
+    <section id="about">
+        <h2>About Me</h2>
+        <p>This is my first website created with the help of HTML.</p>
+    </section>
+    <section id="services">
+        <h2>Services</h2>
+        <p>We provide the best services.</p>
+    </section>
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: example@example.com</p>
+    </section>
     <footer>
-        <p>&copy; 2025 تمام حقوق محفوظ است.</p>
+        <p>&copy; 2025 All rights reserved.</p>
     </footer>
-
-    <script>
-        // متدهای اتصال به کیف پول
-
-        // اتصال به MetaMask
-        async function connectWithMetaMask() {
-            if (typeof window.ethereum !== 'undefined') {
-                try {
-                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                    alert('Wallet connected: ' + accounts[0]);
-                } catch (error) {
-                    alert('Error connecting MetaMask: ' + error.message);
-                }
-            } else {
-                alert('MetaMask not detected. Please install MetaMask.');
-            }
-        }
-
-        // اتصال به WalletConnect (این می‌تواند برای کیف پول‌های دیگر نیز باشد)
-        async function connectWithWalletConnect() {
-            const provider = new WalletConnectProvider({
-                infuraId: "INFURA_PROJECT_ID" // اضافه کردن شناسه Infura خود
-            });
-
-            try {
-                await provider.enable();
-                const web3 = new Web3(provider);
-                const accounts = await web3.eth.getAccounts();
-                alert('Wallet connected: ' + accounts[0]);
-            } catch (error) {
-                alert('Error connecting WalletConnect: ' + error.message);
-            }
-        }
-    </script>
-
-    <!-- وارد کردن WalletConnectProvider -->
-    <script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider/dist/umd/index.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
 </body>
 </html>
