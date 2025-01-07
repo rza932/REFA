@@ -1,4 +1,3 @@
-# REFA
 <!DOCTYPE html>
 <html lang="fa">
 <head>
@@ -95,37 +94,21 @@
 
         async function connectWallet() {
             try {
-                web3Modal = new Web3Modal({
-                    cacheProvider: false, // ذخیره نشدن کیف پول‌های قبلی
-                    providerOptions: {
-                        metamask: {
-                            package: null, // MetaMask
-                        },
-                        walletconnect: {
-                            package: require("@walletconnect/web3-provider"), // WalletConnect
-                            options: {
-                                infuraId: "INFURA_PROJECT_ID" // آیدی پروژه اینفورا (برای WalletConnect)
-                            }
-                        },
-                        fortmatic: {
-                            package: require("fortmatic"),
-                            options: {
-                                key: "FORTMATIC_API_KEY" // آیدی کل API Fortmatic
-                            }
-                        },
-                        // اضافه کردن گزینه‌های کیف پول‌های دیگر (مانند Tonkeeper و Proton) به اینجا
-                    }
-                });
-
-                // باز کردن modal برای انتخاب کیف پول
-                provider = await web3Modal.connect();
-
-                const web3 = new Web3(provider);
-
-                const accounts = await web3.eth.getAccounts();
-                alert('Wallet connected: ' + accounts[0]);
+                // بررسی اینکه MetaMask یا کیف پول مشابه در دسترس است
+                if (typeof window.ethereum !== 'undefined') {
+                    // درخواست اتصال به حساب‌ها
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    alert('Wallet connected: ' + accounts[0]);
+                } else {
+                    alert('MetaMask not detected. Please install MetaMask.');
+                }
             } catch (error) {
-                alert('Error connecting wallet: ' + error.message);
+                // مدیریت خطاها
+                if (error.code === 4001) {
+                    alert('User rejected the connection request');
+                } else {
+                    alert('Error connecting wallet: ' + error.message);
+                }
             }
         }
     </script>
